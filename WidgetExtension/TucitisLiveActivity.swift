@@ -13,64 +13,43 @@ struct TucitisLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: TucitisActivityAttributes.self) { context in
             // MARK: - For devices that don't support the Dynamic Island.
-            VStack(alignment: .leading) {
+            VStack {
                 HStack {
-                    VStack(alignment: .leading) {
-                        Text("Your \(context.state.robotName) is on the way!")
-                            .font(.headline)
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(.secondary)
-                            HStack {
-                                RoundedRectangle(cornerRadius: 15)
-                                    .fill(.blue)
-                                    .frame(width: 50)
-                                Image(systemName: "shippingbox.circle.fill")
-                                    .foregroundColor(.white)
-                                    .padding(.leading, -25)
-                                Image(systemName: "arrow.forward")
-                                    .foregroundColor(.white.opacity(0.5))
-                                Image(systemName: "ellipsis")
-                                    .foregroundColor(.white.opacity(0.5))
-                                Text(timerInterval: context.state.cleaningTime, countsDown: true)
-                                    .bold()
-                                    .font(.caption)
-                                    .foregroundColor(.white.opacity(0.8))
-                                    .multilineTextAlignment(.center)
-                                Image(systemName: "ellipsis")
-                                    .foregroundColor(.white.opacity(0.5))
-                                Image(systemName: "arrow.forward")
-                                    .foregroundColor(.white.opacity(0.5))
-                                Image(systemName: "house.circle.fill")
-                                    .foregroundColor(.green)
-                                    .background(.white)
-                                    .clipShape(Circle())
-                            }
-                        }
-                    }
+                    Image(systemName: "washer.fill")
+                        .font(.largeTitle)
+                        .foregroundStyle(.green)
                     Spacer()
-                    VStack {
-                        Text("2 🍕")
-                            .font(.title)
+                    VStack (alignment: .trailing) {
+                        Text("Step \(context.state.stepCounter) of 4: \(context.state.stepName)")
+                            .font(.title3)
                             .bold()
-                        Spacer()
+                            .foregroundStyle(.green)
+                        HStack {
+                            Text("Done in")
+                                .font(.body)
+                                .bold()
+                                .foregroundStyle(.white)
+                            Text(context.state.cleaningTime, style: .timer)
+                                .bold()
+                                .font(.callout)
+                                .foregroundColor(.green)
+                        }.frame(alignment: .trailing)
+                            
                     }
                 }.padding(5)
-                Text("You've already paid: $9.9 Delivery Fee 💸")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                    .padding(.horizontal, 5)
-            }.padding(15)
+            }
+            .padding(15)
+            .background(.black)
             // MARK: - For Dynamic Island
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
-                    Label("2 Pizza", systemImage: "bag")
+                    Label("Rinse", systemImage: "bag")
                         .font(.title3)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
                     Label {
-                        Text(timerInterval: context.state.cleaningTime, countsDown: true)
+                        Text(context.state.cleaningTime, style: .timer)
                             .multilineTextAlignment(.trailing)
                             .frame(width: 50)
                             .monospacedDigit()
@@ -90,36 +69,36 @@ struct TucitisLiveActivity: Widget {
                     // Deep Linking
                     HStack {
                         Link(destination: URL(string: "pizza://contact+TIM")!) {
-                             Label("Contact driver", systemImage: "phone.circle.fill")
+                            Label("Contact driver", systemImage: "phone.circle.fill")
                                 .font(.caption)
                                 .padding()
-                         }.background(Color.accentColor)
-                         .clipShape(RoundedRectangle(cornerRadius: 15))
+                        }.background(Color.accentColor)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
                         Spacer()
                         Link(destination: URL(string: "pizza://cancelOrder")!) {
-                             Label("Cancel Order", systemImage: "xmark.circle.fill")
+                            Label("Cancel Order", systemImage: "xmark.circle.fill")
                                 .font(.caption)
                                 .padding()
-                         }.background(Color.red)
-                         .clipShape(RoundedRectangle(cornerRadius: 15))
+                        }.background(Color.red)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
                     }
                 }
             } compactLeading: {
                 Label {
-                    Text("2 Pizza")
+                    Text(context.state.stepName)
                 } icon: {
-                    Image(systemName: "bag")
+                    Image(systemName: "washer.fill")
                 }
                 .font(.caption2)
             } compactTrailing: {
-                Text(timerInterval: context.state.cleaningTime, countsDown: true)
+                Text(context.state.cleaningTime, style: .timer)
                     .multilineTextAlignment(.center)
                     .frame(width: 40)
                     .font(.caption2)
             } minimal: {
                 VStack(alignment: .center) {
                     Image(systemName: "timer")
-                    Text(timerInterval: context.state.cleaningTime, countsDown: true)
+                    Text(context.state.cleaningTime, style: .timer)
                         .multilineTextAlignment(.center)
                         .monospacedDigit()
                         .font(.caption2)
@@ -132,8 +111,8 @@ struct TucitisLiveActivity: Widget {
 
 struct TucitisLiveActivity_Previews: PreviewProvider {
     static let attributes = TucitisActivityAttributes(coverageArea: 10)
-    static let contentState = TucitisActivityAttributes.ContentState(robotName: "Tucitis", cleaningTime: Date()...Date().addingTimeInterval(15 * 60))
-
+    static let contentState = TucitisActivityAttributes.ContentState(stepCounter: 3, stepName: "Rinse", robotName: "Tucitis", cleaningTime: .now + 120)
+    
     static var previews: some View {
         attributes
             .previewContext(contentState, viewKind: .dynamicIsland(.compact))

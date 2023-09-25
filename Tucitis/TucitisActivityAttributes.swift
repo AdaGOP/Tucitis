@@ -12,8 +12,10 @@ struct TucitisActivityAttributes: ActivityAttributes {
     public typealias LiveCleaningStatus = ContentState
     
     public struct ContentState: Codable, Hashable {
+        var stepCounter: Int
+        var stepName: String
         var robotName: String
-        var cleaningTime: ClosedRange<Date>
+        var cleaningTime: Date
     }
     
     var coverageArea: Int
