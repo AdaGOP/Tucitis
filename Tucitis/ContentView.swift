@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import ActivityKit
 
 struct ContentView: View {
     var buttonCornerRadius = 30.0
+    @State var showAlert: Bool = false
+    @State var alertMsg: String = ""
+    @State var activities = Activity<TucitisActivityAttributes>.activities
     
     var body: some View {
         NavigationView {
@@ -31,9 +35,16 @@ struct ContentView: View {
                                 Text("Done in")
                                     .foregroundStyle(.white)
                                 .fontWeight(.regular)
-                                Text("8 minutes")
-                                    .foregroundStyle(.green)
-                                    .fontWeight(.regular)
+                                if activities.isEmpty {
+                                    Text("_ minutes")
+                                        .foregroundStyle(.green)
+                                        .fontWeight(.regular)
+                                } else {
+                                    Text(activities[0].contentState.cleaningTime, style: .timer)
+                                        .font(.callout)
+                                        .foregroundStyle(.green)
+                                        .fontWeight(.regular)
+                                }
                             }
                         }
                         Spacer()
@@ -41,9 +52,9 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity)
                     HStack(alignment: .center) {
                         Button {
-                            
+                            startLiveActivities()
                         } label: {
-                            Text("Stop")
+                            Text("Start")
                                 .padding()
                                 .foregroundColor(.white)
                                 .frame(width: 130)
@@ -53,9 +64,9 @@ struct ContentView: View {
                         .buttonBorderShape(.capsule)
                         Spacer()
                         Button {
-                            
+                            stopLiveActivities()
                         } label: {
-                            Text("Pause")
+                            Text("Stop")
                                 .padding()
                                 .foregroundColor(.white)
                                 .frame(width: 130)
@@ -71,9 +82,16 @@ struct ContentView: View {
                             .foregroundStyle(.white)
                             .fontWeight(.regular)
                         Spacer()
-                        Text("1:26")
-                            .foregroundStyle(.white)
-                            .fontWeight(.regular)
+                        if activities.isEmpty {
+                            Text("_ minutes")
+                                .foregroundStyle(.white)
+                                .fontWeight(.regular)
+                        } else {
+                            Text(.now + 120, style: .timer)
+                                .font(.callout)
+                                .foregroundStyle(.white)
+                                .fontWeight(.regular)
+                        }
                     }
                     .padding(.all, 8)
                     .background(.green.opacity(0.2))
@@ -81,14 +99,14 @@ struct ContentView: View {
                     .padding(.leading, 16)
                     .padding(.trailing, 16)
                     HStack {
-                        Image(systemName: "timer")
+                        Image(systemName: "drop.fill")
                             .foregroundColor(.green)
                             .padding(.leading, 16)
                         Text("Cold Wash")
                             .font(.body)
                             .foregroundStyle(.white)
                         Spacer()
-                        Image(systemName: "timer")
+                        Image(systemName: "repeat.circle")
                             .foregroundColor(.green)
                         Text("Low Spin")
                             .font(.body)
@@ -104,9 +122,52 @@ struct ContentView: View {
             }
             .navigationTitle("Wash")
             .padding()
+            .onOpenURL(perform: { url in
+                withAnimation {
+                    if url.absoluteString.contains("stop") {
+                        stopLiveActivities()
+                    } else {
+                        startLiveActivities()
+                    }
+                }
+            })
+            .alert(isPresented: $showAlert, content: {
+                Alert(title: Text("Washing Event"), message: Text(alertMsg), dismissButton: .default(Text("OK")))
+            })
+        }
+    }
+    
+    // MARK: - Functions
+    func startLiveActivities() {
+        guard ActivityAuthorizationInfo().areActivitiesEnabled else {
+              print("Activities are not enabled!")
+              return
+            }
+        
+        let tucitisAttributes = TucitisActivityAttributes(coverageArea: 2)
+        let initialContentState = TucitisActivityAttributes.ContentState(stepCounter: 1, stepName: Step.wash, robotName: "Tucitis", cleaningTime: .now + 480)
+        do {
+            let activity = try Activity<TucitisActivityAttributes>.request(attributes: tucitisAttributes, contentState: initialContentState, pushType: nil)
+            alertMsg = "Washing Start"
+            showAlert = true
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+
+    func stopLiveActivities() {
+        Task {
+            for activity in Activity<TucitisActivityAttributes>.activities{
+                await activity.end(dismissalPolicy: .immediate)
+            }
+            alertMsg = "Washing Stop"
+            showAlert = true
+            print("Cancelled Live Activity")
         }
     }
 }
+
+
 
 struct CardModifier: ViewModifier {
     func body(content: Content) -> some View {

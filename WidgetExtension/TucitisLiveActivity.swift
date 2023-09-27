@@ -19,8 +19,8 @@ struct TucitisLiveActivity: Widget {
                         .font(.largeTitle)
                         .foregroundStyle(.green)
                     Spacer()
-                    VStack (alignment: .leading) {
-                        Text("Step \(context.state.stepCounter) of 4: \(context.state.stepName)")
+                    VStack (alignment: .trailing) {
+                        Text("Step \(context.state.stepCounter) of 4: \(context.state.stepName.rawValue)")
                             .font(.title3)
                             .bold()
                             .foregroundStyle(.green)
@@ -29,13 +29,10 @@ struct TucitisLiveActivity: Widget {
                                 .font(.body)
                                 .foregroundStyle(.white)
                             Text(context.state.cleaningTime, style: .timer)
-                                .frame(maxWidth: 32)
+                                .frame(maxWidth: 100)
                                 .font(.callout)
                                 .foregroundColor(.green)
-                            Text("minutes")
-                                .font(.callout)
-                                .foregroundColor(.green)
-                        }.frame(alignment: .trailing)
+                        }
                     }
                 }.padding(5)
             }
@@ -55,7 +52,7 @@ struct TucitisLiveActivity: Widget {
                 DynamicIslandExpandedRegion(.trailing) {
                     HStack {
                         VStack (alignment: .leading) {
-                            Text("Step: \(context.state.stepName)")
+                            Text("Step: \(context.state.stepName.rawValue)")
                                 .font(.title3)
                                 .bold()
                                 .foregroundStyle(.green)
@@ -93,7 +90,7 @@ struct TucitisLiveActivity: Widget {
                 }
             } compactLeading: {
                 Label {
-                    Text(context.state.stepName)
+                    Text(context.state.stepName.rawValue)
                         .foregroundColor(.green)
                 } icon: {
                     
@@ -121,7 +118,7 @@ struct TucitisLiveActivity: Widget {
 
 struct TucitisLiveActivity_Previews: PreviewProvider {
     static let attributes = TucitisActivityAttributes(coverageArea: 10)
-    static let contentState = TucitisActivityAttributes.ContentState(stepCounter: 3, stepName: "Rinse", robotName: "Tucitis", cleaningTime: .now + 120)
+    static let contentState = TucitisActivityAttributes.ContentState(stepCounter: 3, stepName: Step.rinse , robotName: "Tucitis", cleaningTime: .now + 120)
     
     static var previews: some View {
         attributes
