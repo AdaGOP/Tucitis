@@ -19,7 +19,7 @@ struct TucitisLiveActivity: Widget {
                         .font(.largeTitle)
                         .foregroundStyle(.green)
                     Spacer()
-                    VStack (alignment: .trailing) {
+                    VStack (alignment: .leading) {
                         Text("Step \(context.state.stepCounter) of 4: \(context.state.stepName)")
                             .font(.title3)
                             .bold()
@@ -27,14 +27,15 @@ struct TucitisLiveActivity: Widget {
                         HStack {
                             Text("Done in")
                                 .font(.body)
-                                .bold()
                                 .foregroundStyle(.white)
                             Text(context.state.cleaningTime, style: .timer)
-                                .bold()
+                                .frame(maxWidth: 32)
+                                .font(.callout)
+                                .foregroundColor(.green)
+                            Text("minutes")
                                 .font(.callout)
                                 .foregroundColor(.green)
                         }.frame(alignment: .trailing)
-                            
                     }
                 }.padding(5)
             }
@@ -44,50 +45,58 @@ struct TucitisLiveActivity: Widget {
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
-                    Label("Rinse", systemImage: "bag")
-                        .font(.title3)
+                    Image(systemName: "washer.fill")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .foregroundStyle(.green)
+                        .padding(.leading, 12)
+                        .padding(.top, 4)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Label {
-                        Text(context.state.cleaningTime, style: .timer)
-                            .multilineTextAlignment(.trailing)
-                            .frame(width: 50)
-                            .monospacedDigit()
-                            .font(.caption2)
-                    } icon: {
-                        Image(systemName: "timer")
+                    HStack {
+                        VStack (alignment: .leading) {
+                            Text("Step: \(context.state.stepName)")
+                                .font(.title3)
+                                .bold()
+                                .foregroundStyle(.green)
+                            HStack {
+                                Text("Done in ")
+                                    .frame(maxWidth: .infinity)
+                                    .font(.body)
+                                    .foregroundStyle(.white)
+                                Text(context.state.cleaningTime, style: .timer)
+                                    .frame(maxWidth: 35)
+                                    .font(.callout)
+                                    .foregroundColor(.green)
+                            }
+                        }
                     }
-                    .font(.title2)
-                }
-                DynamicIslandExpandedRegion(.center) {
-                    Text("\(context.state.robotName) is on the way!")
-                        .lineLimit(1)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     // Deep Linking
                     HStack {
-                        Link(destination: URL(string: "pizza://contact+TIM")!) {
-                            Label("Contact driver", systemImage: "phone.circle.fill")
-                                .font(.caption)
+                        Link(destination: URL(string: "tucitis://stop")!) {
+                            Label("Stop", systemImage: "stop.fill")
+                                .frame(maxWidth: .infinity)
+                                .font(.body)
                                 .padding()
-                        }.background(Color.accentColor)
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                        Spacer()
-                        Link(destination: URL(string: "pizza://cancelOrder")!) {
-                            Label("Cancel Order", systemImage: "xmark.circle.fill")
-                                .font(.caption)
+                        }.background(.green)
+                            .clipShape(RoundedRectangle(cornerRadius: 30))
+                        Link(destination: URL(string: "tucitis://pause")!) {
+                            Label("Pause", systemImage: "pause.fill")
+                                .frame(maxWidth: .infinity)
+                                .font(.body)
                                 .padding()
-                        }.background(Color.red)
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                        }.background(.green)
+                            .clipShape(RoundedRectangle(cornerRadius: 30))
                     }
                 }
             } compactLeading: {
                 Label {
                     Text(context.state.stepName)
+                        .foregroundColor(.green)
                 } icon: {
-                    Image(systemName: "washer.fill")
+                    
                 }
                 .font(.caption2)
             } compactTrailing: {
@@ -95,13 +104,14 @@ struct TucitisLiveActivity: Widget {
                     .multilineTextAlignment(.center)
                     .frame(width: 40)
                     .font(.caption2)
+                    .foregroundColor(.green)
             } minimal: {
                 VStack(alignment: .center) {
-                    Image(systemName: "timer")
                     Text(context.state.cleaningTime, style: .timer)
                         .multilineTextAlignment(.center)
                         .monospacedDigit()
                         .font(.caption2)
+                        .foregroundColor(.green)
                 }
             }
             .keylineTint(.accentColor)
