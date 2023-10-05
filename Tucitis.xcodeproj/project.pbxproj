@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C17DCEE2ACF788300767986 /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C17DCED2ACF788300767986 /* DefaultButton.swift */; };
+		2C17DCF02ACF7BB700767986 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C17DCEF2ACF7BB700767986 /* Colors.swift */; };
 		2C32939C2AA6D92F00F54483 /* TucitisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32939B2AA6D92F00F54483 /* TucitisApp.swift */; };
 		2C32939E2AA6D92F00F54483 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32939D2AA6D92F00F54483 /* ContentView.swift */; };
 		2C3293A02AA6D93100F54483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C32939F2AA6D93100F54483 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C17DCED2ACF788300767986 /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
+		2C17DCEF2ACF7BB700767986 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2C3293982AA6D92F00F54483 /* Tucitis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tucitis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C32939B2AA6D92F00F54483 /* TucitisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TucitisApp.swift; sourceTree = "<group>"; };
 		2C32939D2AA6D92F00F54483 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +57,8 @@
 			children = (
 				2C32939B2AA6D92F00F54483 /* TucitisApp.swift */,
 				2C32939D2AA6D92F00F54483 /* ContentView.swift */,
+				2C17DCED2ACF788300767986 /* DefaultButton.swift */,
+				2C17DCEF2ACF7BB700767986 /* Colors.swift */,
 				2C32939F2AA6D93100F54483 /* Assets.xcassets */,
 				2C3293A12AA6D93100F54483 /* Preview Content */,
 			);
@@ -138,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C32939E2AA6D92F00F54483 /* ContentView.swift in Sources */,
+				2C17DCF02ACF7BB700767986 /* Colors.swift in Sources */,
+				2C17DCEE2ACF788300767986 /* DefaultButton.swift in Sources */,
 				2C32939C2AA6D92F00F54483 /* TucitisApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
