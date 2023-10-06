@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Tucitis
 //
-//  Created by David Gunawan & Allicia Viona Sagi on 05/09/23.
+//  Created by David & Viona on 05/09/23.
 //
 
 import SwiftUI
