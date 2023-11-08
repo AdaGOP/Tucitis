@@ -11,6 +11,9 @@
 		2C32939E2AA6D92F00F54483 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32939D2AA6D92F00F54483 /* ContentView.swift */; };
 		2C3293A02AA6D93100F54483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C32939F2AA6D93100F54483 /* Assets.xcassets */; };
 		2C3293A32AA6D93100F54483 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C3293A22AA6D93100F54483 /* Preview Assets.xcassets */; };
+		460B22332AF8D346003B29FD /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B22322AF8D346003B29FD /* LiveActivityManager.swift */; };
+		460B22352AF8D441003B29FD /* MachineAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B22342AF8D441003B29FD /* MachineAttributes.swift */; };
+		460B22362AF8D441003B29FD /* MachineAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B22342AF8D441003B29FD /* MachineAttributes.swift */; };
 		461CBFE92AA709E7009F6448 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 461CBFE82AA709E7009F6448 /* WidgetKit.framework */; };
 		461CBFEB2AA709E7009F6448 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 461CBFEA2AA709E7009F6448 /* SwiftUI.framework */; };
 		461CBFEE2AA709E7009F6448 /* WidgetExtensionBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461CBFED2AA709E7009F6448 /* WidgetExtensionBundle.swift */; };
@@ -20,8 +23,7 @@
 		461CBFF72AA709E9009F6448 /* WidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 461CBFF32AA709E7009F6448 /* WidgetExtension.intentdefinition */; };
 		461CBFF82AA709E9009F6448 /* WidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 461CBFF32AA709E7009F6448 /* WidgetExtension.intentdefinition */; };
 		461CBFFB2AA709E9009F6448 /* WidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 461CBFE62AA709E7009F6448 /* WidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		461CC0012AA70B5B009F6448 /* TucitisActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461CC0002AA70B5B009F6448 /* TucitisActivityAttributes.swift */; };
-		461CC0032AA72458009F6448 /* TucitisActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461CC0002AA70B5B009F6448 /* TucitisActivityAttributes.swift */; };
+		46738BFB2AFA3F6400BAF2FD /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B22322AF8D346003B29FD /* LiveActivityManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		2C32939D2AA6D92F00F54483 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2C32939F2AA6D93100F54483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C3293A22AA6D93100F54483 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		460B22322AF8D346003B29FD /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
+		460B22342AF8D441003B29FD /* MachineAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineAttributes.swift; sourceTree = "<group>"; };
 		461CBFE62AA709E7009F6448 /* WidgetExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		461CBFE82AA709E7009F6448 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		461CBFEA2AA709E7009F6448 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -63,7 +67,8 @@
 		461CBFF32AA709E7009F6448 /* WidgetExtension.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WidgetExtension.intentdefinition; sourceTree = "<group>"; };
 		461CBFF42AA709E9009F6448 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		461CBFF62AA709E9009F6448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		461CC0002AA70B5B009F6448 /* TucitisActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TucitisActivityAttributes.swift; sourceTree = "<group>"; };
+		464834552AD65D3700681E7E /* Tucitis.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tucitis.entitlements; sourceTree = "<group>"; };
+		464834562AD65D7D00681E7E /* WidgetExtensionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetExtensionExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +94,7 @@
 		2C32938F2AA6D92F00F54483 = {
 			isa = PBXGroup;
 			children = (
+				464834562AD65D7D00681E7E /* WidgetExtensionExtension.entitlements */,
 				2C32939A2AA6D92F00F54483 /* Tucitis */,
 				461CBFEC2AA709E7009F6448 /* WidgetExtension */,
 				461CBFE72AA709E7009F6448 /* Frameworks */,
@@ -108,9 +114,11 @@
 		2C32939A2AA6D92F00F54483 /* Tucitis */ = {
 			isa = PBXGroup;
 			children = (
+				464834552AD65D3700681E7E /* Tucitis.entitlements */,
 				2C32939B2AA6D92F00F54483 /* TucitisApp.swift */,
 				2C32939D2AA6D92F00F54483 /* ContentView.swift */,
-				461CC0002AA70B5B009F6448 /* TucitisActivityAttributes.swift */,
+				460B22342AF8D441003B29FD /* MachineAttributes.swift */,
+				460B22322AF8D346003B29FD /* LiveActivityManager.swift */,
 				2C32939F2AA6D93100F54483 /* Assets.xcassets */,
 				2C3293A12AA6D93100F54483 /* Preview Content */,
 			);
@@ -249,8 +257,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C32939E2AA6D92F00F54483 /* ContentView.swift in Sources */,
-				461CC0012AA70B5B009F6448 /* TucitisActivityAttributes.swift in Sources */,
+				460B22332AF8D346003B29FD /* LiveActivityManager.swift in Sources */,
 				2C32939C2AA6D92F00F54483 /* TucitisApp.swift in Sources */,
+				460B22352AF8D441003B29FD /* MachineAttributes.swift in Sources */,
 				461CBFF82AA709E9009F6448 /* WidgetExtension.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,7 +271,8 @@
 				461CBFF72AA709E9009F6448 /* WidgetExtension.intentdefinition in Sources */,
 				461CBFF02AA709E7009F6448 /* TucitisLiveActivity.swift in Sources */,
 				461CBFEE2AA709E7009F6448 /* WidgetExtensionBundle.swift in Sources */,
-				461CC0032AA72458009F6448 /* TucitisActivityAttributes.swift in Sources */,
+				46738BFB2AFA3F6400BAF2FD /* LiveActivityManager.swift in Sources */,
+				460B22362AF8D441003B29FD /* MachineAttributes.swift in Sources */,
 				461CBFF22AA709E7009F6448 /* WidgetExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,10 +408,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Tucitis/Tucitis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tucitis/Preview Content\"";
-				DEVELOPMENT_TEAM = 665XP63X44;
+				DEVELOPMENT_TEAM = GD8VREVBA4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
@@ -429,10 +440,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Tucitis/Tucitis.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tucitis/Preview Content\"";
-				DEVELOPMENT_TEAM = 665XP63X44;
+				DEVELOPMENT_TEAM = GD8VREVBA4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
@@ -459,13 +471,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WidgetExtensionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 665XP63X44;
+				DEVELOPMENT_TEAM = GD8VREVBA4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WidgetExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WidgetExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -486,13 +500,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WidgetExtensionExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 665XP63X44;
+				DEVELOPMENT_TEAM = GD8VREVBA4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WidgetExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = WidgetExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

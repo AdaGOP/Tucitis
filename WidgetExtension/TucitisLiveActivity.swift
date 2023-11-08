@@ -11,7 +11,7 @@ import SwiftUI
 
 struct TucitisLiveActivity: Widget {
     var body: some WidgetConfiguration {
-        ActivityConfiguration(for: TucitisActivityAttributes.self) { context in
+        ActivityConfiguration(for: MachineAttributes.self) { context in
             // MARK: - For devices that don't support the Dynamic Island.
             VStack {
                 HStack {
@@ -19,8 +19,8 @@ struct TucitisLiveActivity: Widget {
                         .font(.largeTitle)
                         .foregroundStyle(.green)
                     Spacer()
-                    VStack (alignment: .trailing) {
-                        Text("Step \(context.state.stepCounter) of 4: \(context.state.stepName.rawValue)")
+                    VStack (alignment: .leading) {
+                        Text("Step \(Int(context.state.status.rawValue)) of 4: \(context.state.status.description)")
                             .font(.title3)
                             .bold()
                             .foregroundStyle(.green)
@@ -28,8 +28,7 @@ struct TucitisLiveActivity: Widget {
                             Text("Done in")
                                 .font(.body)
                                 .foregroundStyle(.white)
-                            Text(context.state.cleaningTime, style: .timer)
-                                .frame(maxWidth: 100)
+                            Text("2 seconds")
                                 .font(.callout)
                                 .foregroundColor(.green)
                         }
@@ -52,7 +51,7 @@ struct TucitisLiveActivity: Widget {
                 DynamicIslandExpandedRegion(.trailing) {
                     HStack {
                         VStack (alignment: .leading) {
-                            Text("Step: \(context.state.stepName.rawValue)")
+                            Text("Step: \(Int(context.state.status.rawValue))")
                                 .font(.title3)
                                 .bold()
                                 .foregroundStyle(.green)
@@ -61,7 +60,7 @@ struct TucitisLiveActivity: Widget {
                                     .frame(maxWidth: .infinity)
                                     .font(.body)
                                     .foregroundStyle(.white)
-                                Text(context.state.cleaningTime, style: .timer)
+                                Text("Edit")
                                     .frame(maxWidth: 35)
                                     .font(.callout)
                                     .foregroundColor(.green)
@@ -90,21 +89,21 @@ struct TucitisLiveActivity: Widget {
                 }
             } compactLeading: {
                 Label {
-                    Text(context.state.stepName.rawValue)
+                    Text(context.state.status.description)
                         .foregroundColor(.green)
                 } icon: {
                     
                 }
                 .font(.caption2)
             } compactTrailing: {
-                Text(context.state.cleaningTime, style: .timer)
+                Text("Edit")
                     .multilineTextAlignment(.center)
                     .frame(width: 40)
                     .font(.caption2)
                     .foregroundColor(.green)
             } minimal: {
                 VStack(alignment: .center) {
-                    Text(context.state.cleaningTime, style: .timer)
+                    Text("Edit")
                         .multilineTextAlignment(.center)
                         .monospacedDigit()
                         .font(.caption2)
@@ -117,8 +116,8 @@ struct TucitisLiveActivity: Widget {
 }
 
 struct TucitisLiveActivity_Previews: PreviewProvider {
-    static let attributes = TucitisActivityAttributes(coverageArea: 10)
-    static let contentState = TucitisActivityAttributes.ContentState(stepCounter: 3, stepName: Step.rinse , robotName: "Tucitis", cleaningTime: .now + 120)
+    static let attributes = MachineAttributes(orderNumber: 1)
+    static let contentState = MachineAttributes.ContentState(status: .wash, currentOrder: 1)
     
     static var previews: some View {
         attributes

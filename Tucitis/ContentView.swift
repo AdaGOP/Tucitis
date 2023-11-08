@@ -7,17 +7,18 @@
 
 import SwiftUI
 import ActivityKit
+import WidgetKit
 
 struct ContentView: View {
     var buttonCornerRadius = 30.0
     @State var showAlert: Bool = false
     @State var alertMsg: String = ""
-    @State var activities = Activity<TucitisActivityAttributes>.activities
+    @ObservedObject var liveActivity: LiveActivityManager
+    @AppStorage("sharedData", store: UserDefaults(suiteName: "group.adeva.Tuicitis")) var sharedDuration: Int = 0
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                Text("Current Cycle")
                 VStack {
                     HStack {
                         Image(systemName: "timer")
@@ -32,15 +33,15 @@ struct ContentView: View {
                                 .font(.title2)
                                 .bold()
                             HStack {
-                                Text("Done in")
-                                    .foregroundStyle(.white)
-                                .fontWeight(.regular)
-                                if activities.isEmpty {
-                                    Text("_ minutes")
-                                        .foregroundStyle(.green)
+                                if liveActivity.duration == 0 {
+                                    Text("Not Started")
+                                        .foregroundStyle(.white)
                                         .fontWeight(.regular)
                                 } else {
-                                    Text(activities[0].contentState.cleaningTime, style: .timer)
+                                    Text("Done in")
+                                        .foregroundStyle(.white)
+                                        .fontWeight(.regular)
+                                    Text("\(liveActivity.duration) seconds")
                                         .font(.callout)
                                         .foregroundStyle(.green)
                                         .fontWeight(.regular)
@@ -52,7 +53,11 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity)
                     HStack(alignment: .center) {
                         Button {
-                            startLiveActivities()
+                            alertMsg = "Washing Start"
+                            showAlert = true
+                            sharedDuration = 16
+                            WidgetCenter.shared.reloadAllTimelines()
+                            LiveActivityManager.shared.simulate()
                         } label: {
                             Text("Start")
                                 .padding()
@@ -64,7 +69,13 @@ struct ContentView: View {
                         .buttonBorderShape(.capsule)
                         Spacer()
                         Button {
-                            stopLiveActivities()
+                            alertMsg = "Washing Stop"
+                            showAlert = true
+                            sharedDuration = 0
+                            WidgetCenter.shared.reloadAllTimelines()
+                            Task {
+                                await LiveActivityManager.shared.stopSimulate()
+                            }
                         } label: {
                             Text("Stop")
                                 .padding()
@@ -78,20 +89,22 @@ struct ContentView: View {
                     .padding(.horizontal, 16)
                     .padding(.vertical, 6)
                     HStack {
-                        Text("Rinse Step")
+                        Text("\(liveActivity.currentState) Step")
                             .foregroundStyle(.white)
                             .fontWeight(.regular)
                         Spacer()
-                        if activities.isEmpty {
-                            Text("_ minutes")
+                        if liveActivity.duration != 0 {
+                            Text("\(liveActivity.duration) seconds")
+                                .font(.callout)
                                 .foregroundStyle(.white)
                                 .fontWeight(.regular)
                         } else {
-                            Text(.now + 120, style: .timer)
+                            Text("-")
                                 .font(.callout)
                                 .foregroundStyle(.white)
                                 .fontWeight(.regular)
                         }
+                        
                     }
                     .padding(.all, 8)
                     .background(.green.opacity(0.2))
@@ -125,44 +138,21 @@ struct ContentView: View {
             .onOpenURL(perform: { url in
                 withAnimation {
                     if url.absoluteString.contains("stop") {
-                        stopLiveActivities()
+                        alertMsg = "Washing Stop"
+                        showAlert = true
+                        Task {
+                            await LiveActivityManager.shared.stopSimulate()
+                        }
                     } else {
-                        startLiveActivities()
+                        alertMsg = "Washing Start"
+                        showAlert = true
+                        LiveActivityManager.shared.simulate()
                     }
                 }
             })
             .alert(isPresented: $showAlert, content: {
                 Alert(title: Text("Washing Event"), message: Text(alertMsg), dismissButton: .default(Text("OK")))
             })
-        }
-    }
-    
-    // MARK: - Functions
-    func startLiveActivities() {
-        guard ActivityAuthorizationInfo().areActivitiesEnabled else {
-              print("Activities are not enabled!")
-              return
-            }
-        
-        let tucitisAttributes = TucitisActivityAttributes(coverageArea: 2)
-        let initialContentState = TucitisActivityAttributes.ContentState(stepCounter: 1, stepName: Step.wash, robotName: "Tucitis", cleaningTime: .now + 480)
-        do {
-            let activity = try Activity<TucitisActivityAttributes>.request(attributes: tucitisAttributes, contentState: initialContentState, pushType: nil)
-            alertMsg = "Washing Start"
-            showAlert = true
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-
-    func stopLiveActivities() {
-        Task {
-            for activity in Activity<TucitisActivityAttributes>.activities{
-                await activity.end(dismissalPolicy: .immediate)
-            }
-            alertMsg = "Washing Stop"
-            showAlert = true
-            print("Cancelled Live Activity")
         }
     }
 }
@@ -179,6 +169,6 @@ struct CardModifier: ViewModifier {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(liveActivity: LiveActivityManager.shared)
     }
 }
