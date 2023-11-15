@@ -11,6 +11,7 @@
 		2C32939E2AA6D92F00F54483 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32939D2AA6D92F00F54483 /* ContentView.swift */; };
 		2C3293A02AA6D93100F54483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C32939F2AA6D93100F54483 /* Assets.xcassets */; };
 		2C3293A32AA6D93100F54483 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C3293A22AA6D93100F54483 /* Preview Assets.xcassets */; };
+		460382502B04D7E600F9C0AF /* SimpleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4603824F2B04D7E600F9C0AF /* SimpleEntry.swift */; };
 		460B22332AF8D346003B29FD /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B22322AF8D346003B29FD /* LiveActivityManager.swift */; };
 		460B22352AF8D441003B29FD /* MachineAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B22342AF8D441003B29FD /* MachineAttributes.swift */; };
 		460B22362AF8D441003B29FD /* MachineAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B22342AF8D441003B29FD /* MachineAttributes.swift */; };
@@ -56,6 +57,7 @@
 		2C32939D2AA6D92F00F54483 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2C32939F2AA6D93100F54483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C3293A22AA6D93100F54483 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4603824F2B04D7E600F9C0AF /* SimpleEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleEntry.swift; sourceTree = "<group>"; };
 		460B22322AF8D346003B29FD /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
 		460B22342AF8D441003B29FD /* MachineAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineAttributes.swift; sourceTree = "<group>"; };
 		461CBFE62AA709E7009F6448 /* WidgetExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +150,7 @@
 				461CBFED2AA709E7009F6448 /* WidgetExtensionBundle.swift */,
 				461CBFEF2AA709E7009F6448 /* TucitisLiveActivity.swift */,
 				461CBFF12AA709E7009F6448 /* WidgetExtension.swift */,
+				4603824F2B04D7E600F9C0AF /* SimpleEntry.swift */,
 				461CBFF32AA709E7009F6448 /* WidgetExtension.intentdefinition */,
 				461CBFF42AA709E9009F6448 /* Assets.xcassets */,
 				461CBFF62AA709E9009F6448 /* Info.plist */,
@@ -268,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				460382502B04D7E600F9C0AF /* SimpleEntry.swift in Sources */,
 				461CBFF72AA709E9009F6448 /* WidgetExtension.intentdefinition in Sources */,
 				461CBFF02AA709E7009F6448 /* TucitisLiveActivity.swift in Sources */,
 				461CBFEE2AA709E7009F6448 /* WidgetExtensionBundle.swift in Sources */,

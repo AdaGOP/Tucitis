@@ -9,6 +9,10 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
+/// `TucitisLiveActivity`: A widget for displaying live activity related to a washing machine.
+///
+/// This widget presents different views based on the device's support for Dynamic Island and other UI contexts.
+
 struct TucitisLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: MachineAttributes.self) { context in
@@ -103,7 +107,7 @@ struct TucitisLiveActivity: Widget {
                     .foregroundColor(.green)
             } minimal: {
                 VStack(alignment: .center) {
-                    Text("Edit")
+                    Text("5s")
                         .multilineTextAlignment(.center)
                         .monospacedDigit()
                         .font(.caption2)

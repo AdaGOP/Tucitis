@@ -11,8 +11,9 @@ import Intents
 
 struct Provider: IntentTimelineProvider {
     let userDefaults = UserDefaults(suiteName: "group.adeva.Tuicitis")
+    
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), duration: 0, step: "")
+        SimpleEntry(date: Date(), duration: readSharedData(), step: "")
     }
     
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
@@ -31,7 +32,7 @@ struct Provider: IntentTimelineProvider {
             entries.append(entry)
         }
         
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        let timeline = Timeline(entries: entries, policy: .never)
         completion(timeline)
     }
     
@@ -40,55 +41,83 @@ struct Provider: IntentTimelineProvider {
     }
 }
 
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let duration: Int
-    let step: String
-}
-
 struct WidgetExtensionEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
     
+    @ViewBuilder
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "timer")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 40)
-                    .foregroundColor(.green)
-                    .bold()
-                Text("Quick \nWash")
-                    .foregroundStyle(.green)
-                    .font(.body)
-                    .bold()
-            }.padding(.bottom, 10)
-            HStack {
-                Text("Done in")
-                    .foregroundStyle(.white)
-                    .font(.caption)
-                Text("\(entry.duration) seconds")
-                    .foregroundStyle(.green)
-                    .font(.caption)
-            }
-            Spacer()
-            HStack {
-                Text("\(entry.step)")
-                    .foregroundStyle(.green)
-                    .font(.subheadline)
-                    .bold()
-                Spacer()
-                Link(destination: URL(string: "tucitis://pause")!) {
-                    Label("Pause", systemImage: "pause.fill")
+        switch widgetFamily {
+        case .systemSmall:
+            smallWidgetView(entry)
+        case .systemMedium:
+            mediumWidgetView(entry)
+        case .systemLarge:
+            largeWidgetView(entry)
+        case .systemExtraLarge:
+            extraLargeWidgetView(entry)
+        default:
+            Text("Unsupported widget size")
+        }
+    }
+    
+    private func smallWidgetView(_ entry: Provider.Entry) -> some View {
+            VStack(alignment: .leading) {
+                HStack {
+                    Image(systemName: "timer")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 40)
+                        .foregroundColor(.green)
+                        .bold()
+                    Text("Quick \nWash")
+                        .foregroundStyle(.green)
+                        .font(.body)
+                        .bold()
+                }.padding(.bottom, 10)
+                HStack {
+                    Text("Done in")
                         .foregroundStyle(.white)
                         .font(.caption)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 5)
-                }.background(.green)
-                    .clipShape(RoundedRectangle(cornerRadius: 30))
-            }
-        }.widgetBackground(.black)
+                    Text("\(entry.duration) seconds")
+                        .foregroundStyle(.green)
+                        .font(.caption)
+                }
+                Spacer()
+                HStack {
+                    Text("\(entry.step)")
+                        .foregroundStyle(.green)
+                        .font(.subheadline)
+                        .bold()
+                    Spacer()
+                    Link(destination: URL(string: "tucitis://pause")!) {
+                        Label("Pause", systemImage: "pause.fill")
+                            .foregroundStyle(.white)
+                            .font(.caption)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 5)
+                    }.background(.green)
+                        .clipShape(RoundedRectangle(cornerRadius: 30))
+                }
+            }.widgetBackground(.black)
     }
+    
+    private func mediumWidgetView(_ entry: Provider.Entry) -> some View {
+        // Layout for medium widget
+        smallWidgetView(entry)
+    }
+    
+    private func largeWidgetView(_ entry: Provider.Entry) -> some View {
+        // Layout for large widget
+        smallWidgetView(entry)
+    }
+    
+    private func extraLargeWidgetView(_ entry: Provider.Entry) -> some View {
+        // Layout for extra-large widget (iPadOS only)
+        smallWidgetView(entry)
+    }
+    
+    
     
 }
 
