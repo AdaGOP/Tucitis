@@ -9,6 +9,8 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: IntentTimelineProvider {
+    typealias Entry = SimpleEntry
+    
     let userDefaults = UserDefaults(suiteName: "group.adeva.Tuicitis")
     
     func placeholder(in context: Context) -> SimpleEntry {

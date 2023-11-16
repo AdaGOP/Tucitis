@@ -25,6 +25,7 @@
 		461CBFF82AA709E9009F6448 /* WidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 461CBFF32AA709E7009F6448 /* WidgetExtension.intentdefinition */; };
 		461CBFFB2AA709E9009F6448 /* WidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 461CBFE62AA709E7009F6448 /* WidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		46738BFB2AFA3F6400BAF2FD /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460B22322AF8D346003B29FD /* LiveActivityManager.swift */; };
+		4696FB6B2B05B8880023C16A /* WidgetExtensionEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4696FB6A2B05B8880023C16A /* WidgetExtensionEntryView.swift */; };
 		46AC03752B05B6950062FDE1 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AC03742B05B6950062FDE1 /* Provider.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		461CBFF62AA709E9009F6448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		464834552AD65D3700681E7E /* Tucitis.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tucitis.entitlements; sourceTree = "<group>"; };
 		464834562AD65D7D00681E7E /* WidgetExtensionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetExtensionExtension.entitlements; sourceTree = "<group>"; };
+		4696FB6A2B05B8880023C16A /* WidgetExtensionEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetExtensionEntryView.swift; sourceTree = "<group>"; };
 		46AC03742B05B6950062FDE1 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,16 +151,25 @@
 		461CBFEC2AA709E7009F6448 /* WidgetExtension */ = {
 			isa = PBXGroup;
 			children = (
+				4696FB6C2B05B8DB0023C16A /* Widget Directory */,
 				461CBFED2AA709E7009F6448 /* WidgetExtensionBundle.swift */,
 				461CBFEF2AA709E7009F6448 /* TucitisLiveActivity.swift */,
-				461CBFF12AA709E7009F6448 /* WidgetExtension.swift */,
-				46AC03742B05B6950062FDE1 /* Provider.swift */,
-				4603824F2B04D7E600F9C0AF /* SimpleEntry.swift */,
 				461CBFF32AA709E7009F6448 /* WidgetExtension.intentdefinition */,
 				461CBFF42AA709E9009F6448 /* Assets.xcassets */,
 				461CBFF62AA709E9009F6448 /* Info.plist */,
 			);
 			path = WidgetExtension;
+			sourceTree = "<group>";
+		};
+		4696FB6C2B05B8DB0023C16A /* Widget Directory */ = {
+			isa = PBXGroup;
+			children = (
+				461CBFF12AA709E7009F6448 /* WidgetExtension.swift */,
+				46AC03742B05B6950062FDE1 /* Provider.swift */,
+				4696FB6A2B05B8880023C16A /* WidgetExtensionEntryView.swift */,
+				4603824F2B04D7E600F9C0AF /* SimpleEntry.swift */,
+			);
+			path = "Widget Directory";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				460382502B04D7E600F9C0AF /* SimpleEntry.swift in Sources */,
+				4696FB6B2B05B8880023C16A /* WidgetExtensionEntryView.swift in Sources */,
 				461CBFF72AA709E9009F6448 /* WidgetExtension.intentdefinition in Sources */,
 				461CBFF02AA709E7009F6448 /* TucitisLiveActivity.swift in Sources */,
 				461CBFEE2AA709E7009F6448 /* WidgetExtensionBundle.swift in Sources */,
